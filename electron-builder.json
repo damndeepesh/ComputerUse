@@ -1,0 +1,130 @@
+{
+  "appId": "com.agiassistant.app",
+  "productName": "AGI Assistant",
+  "copyright": "Copyright © 2025",
+  "directories": {
+    "output": "release",
+    "buildResources": "assets"
+  },
+  "files": [
+    "dist/**/*",
+    "src/main.js",
+    "src/preload.js",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "backend",
+      "to": "backend",
+      "filter": ["**/*", "!**/__pycache__/**", "!**/*.pyc"]
+    },
+    {
+      "from": "requirements.txt",
+      "to": "requirements.txt"
+    },
+    {
+      "from": "venv",
+      "to": "venv",
+      "filter": ["**/*", "!**/__pycache__/**", "!**/*.pyc"]
+    }
+  ],
+  "mac": {
+    "category": "public.app-category.productivity",
+    "icon": "assets/icon.png",
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      },
+      {
+        "target": "zip",
+        "arch": ["x64", "arm64"]
+      }
+    ],
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "entitlements": "assets/entitlements.mac.plist",
+    "entitlementsInherit": "assets/entitlements.mac.plist"
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 130,
+        "y": 220
+      },
+      {
+        "x": 410,
+        "y": 220,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ],
+    "title": "AGI Assistant Installer",
+    "window": {
+      "width": 540,
+      "height": 380
+    }
+  },
+  "win": {
+    "icon": "assets/icon.png",
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64", "ia32"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      },
+      {
+        "target": "zip",
+        "arch": ["x64"]
+      }
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "installerIcon": "assets/icon.ico",
+    "uninstallerIcon": "assets/icon.ico",
+    "installerHeaderIcon": "assets/icon.ico",
+    "license": "LICENSE.txt",
+    "include": "assets/installer.nsh"
+  },
+  "portable": {
+    "artifactName": "AGI-Assistant-Portable-${version}.${ext}"
+  },
+  "linux": {
+    "icon": "assets/icon.png",
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": ["x64"]
+      },
+      {
+        "target": "deb",
+        "arch": ["x64"]
+      },
+      {
+        "target": "rpm",
+        "arch": ["x64"]
+      }
+    ],
+    "category": "Utility",
+    "synopsis": "AI-powered desktop automation platform",
+    "description": "AGI Assistant learns your workflows and automates them using AI"
+  },
+  "appImage": {
+    "license": "LICENSE.txt"
+  },
+  "deb": {
+    "depends": [
+      "python3",
+      "python3-pip"
+    ]
+  },
+  "publish": null
+}
+
